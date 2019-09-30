@@ -16,6 +16,7 @@
  <p>To jest mój blog. Opublikowano {% total_posts %} postów.</p>
  <p><a href="{% url "blog:post_feed" %}">Subskrybuj kanał RSS</a></p>
 
+
 <br>
 
  <h3>Najnowsze posty</h3>
@@ -30,6 +31,15 @@
         </li>
     {% endfor %}
     </ul>
+
+    <div>
+        <h2>Subskrybuj</h2>
+        <form action="{% url "blog:subscribe_view" %}" method="post" target="#">
+        {% subscribe_form %}
+        {% csrf_token %}
+        <p><input type="submit" value="Dodaj komentarz"></p>
+        </form>
+       </div>
  </div>
 </body>
 </html>

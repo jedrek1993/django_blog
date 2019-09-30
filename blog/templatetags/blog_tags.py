@@ -4,6 +4,7 @@ from django.utils.safestring import mark_safe
 import markdown
 
 from ..models import Post
+from ..forms import SubscriberForm
 
 register = template.Library()
 
@@ -25,6 +26,9 @@ def get_most_commented_posts(count=5):
         total_comments=Count('comments')
     ).order_by('-total_comments')[:count]
 
+@register.simple_tag
+def subscribe_form():
+    return SubscriberForm().as_p()
 
 @register.filter(name='markdown')
 def markdown_format(text):

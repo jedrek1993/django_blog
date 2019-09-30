@@ -64,3 +64,12 @@ class Comment(models.Model):
 
     def __str__(self):
         return 'Komentarz dodany przez {} dla posta {}'.format(self.name, self.post)
+
+
+class Subscriber(models.Model):
+    name = models.CharField(max_length=80)
+    email = models.EmailField()
+    created = models.DateTimeField(auto_now_add=True)
+
+    class Meta:
+        ordering = ('created',)

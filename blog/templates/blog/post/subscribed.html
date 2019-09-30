@@ -1,0 +1,13 @@
+{% extends "blog/base.html" %}
+{% load blog_tags %}
+{% block title %}Mój blog{% endblock %}
+{% block content %}
+<a href="{% url "blog:post_list" %}">
+ <h1>Mój blog</h1>
+</a>
+{% if subscribed %}
+ <h2>Subskrybcja wykonana pomyślnie</h2>
+ <a href="{% url "blog:post_list" %}">Wróć do listy postów</a>
+{% endif %}
+ 
+{% endblock %}

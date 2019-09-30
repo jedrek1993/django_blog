@@ -7,7 +7,7 @@ from django.db.models import Count
 from taggit.models import Tag
 
 from .models import Post
-from .forms import EmailPostForm, CommentForm
+from .forms import EmailPostForm, CommentForm, SubscriberForm
 
 
 # class PostListView(ListView):
@@ -98,3 +98,14 @@ def post_share(request, post_id):
     else:
         form = EmailPostForm()
     return render(request, 'blog/post/share.html', {'post': post, 'form': form, 'sent': sent})
+
+
+def subscribe_view(request):
+    subscribed = False
+    if request.method == 'POST':
+        form = SubscriberForm(request.POST)
+        if form.is_valid():
+            form.save()
+            subscribed = True
+    return render(request, 'blog/post/subscribed.html', {'subscribed': subscribed,})
+
