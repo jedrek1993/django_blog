@@ -1,6 +1,7 @@
 from django import template
 from django.db.models import Count
 from django.utils.safestring import mark_safe
+from taggit.models import Tag
 import markdown
 
 from ..models import Post
@@ -26,9 +27,18 @@ def get_most_commented_posts(count=5):
         total_comments=Count('comments')
     ).order_by('-total_comments')[:count]
 
+
+@register.simple_tag
+def get_tags(count=5):
+    return Tag.objects.annotate(
+        num_posts=Count('post')
+    ).order_by('-num_posts')[:count]
+
+
 @register.simple_tag
 def subscribe_form():
     return SubscriberForm().as_p()
+
 
 @register.filter(name='markdown')
 def markdown_format(text):
