@@ -62,6 +62,9 @@ class Comment(models.Model):
     class Meta:
         ordering = ('created',)
 
+    def name_to_color(self):
+        return '#' + hex(hash(self.name.lower()))[2:5]
+
     def __str__(self):
         return 'Komentarz dodany przez {} dla posta {}'.format(self.name, self.post)
 
