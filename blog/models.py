@@ -63,7 +63,7 @@ class Comment(models.Model):
         ordering = ('created',)
 
     def name_to_color(self):
-        return '#' + hex(hash(self.name.lower()))[2:5]
+        return '#' + hex(hash(self.name.lower()))[3:6]
 
     def __str__(self):
         return 'Komentarz dodany przez {} dla posta {}'.format(self.name, self.post)

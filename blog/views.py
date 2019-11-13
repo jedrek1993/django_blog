@@ -58,6 +58,7 @@ def post_detail(request, year, month, day, post):
             new_comment = comment_form.save(commit=False)
             new_comment.post = post
             new_comment.save()
+            comment_form = CommentForm()
     else:
         comment_form = CommentForm()
 

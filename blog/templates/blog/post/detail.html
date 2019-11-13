@@ -47,7 +47,10 @@
 {% for comment in comments %}
 
 <div class="media mb-4">
-    <img class="d-flex mr-3 rounded-circle" src="http://placehold.it/50x50" alt="">
+    <div class="avatar-circle mr-3" style="background-color: {{ comment.name_to_color }}">
+    <span class="initials">{{ comment.name|slice:":2" }}</span>
+    </div>
+
     <div class="media-body">
     <h5 class="mt-0">{{ comment.name }}</h5>
     <p>{{ comment.created }}</p>
@@ -58,9 +61,6 @@
  <p>Nie ma jeszcze żadnych komentarzy.</p>
 {% endfor %}
 
-{% if new_comment %}
- <h2>Twój komentarz został dodany.</h2>
-{% else %}
 <div class="card my-4">
     <h5 class="card-header">Dodaj nowy komentarz</h5>
     <div class="card-body">
@@ -73,6 +73,4 @@
     </form>
     </div>
 </div>
-{% endif %}
-
 {% endblock %}
